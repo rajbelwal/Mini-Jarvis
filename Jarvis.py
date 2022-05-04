@@ -13,7 +13,7 @@ engine.setProperty('voice', voices[0].id)
 
 def speak(audio):
     engine.say(audio)
-    engine.runAndWait()
+    engine.runAndWait()    # It makes the speech audible in the system
 
 
 def wishMe():
@@ -35,17 +35,17 @@ def wishMe():
 
 
 def takeCommand():
-    r = sr.Recognizer()       # takes input from micrphone and output string
+    r = sr.Recognizer()    # Listen to spoken words and identify them.
 
-    with sr.Microphone() as source:
+    with sr.Microphone() as source:     # Use the default microphone as the audio source.
         # r.adjust_for_ambient_noise(source,duration=1)
         print("Listening...")
         r.pause_threshold = 1
-        audio = r.listen(source)
+        audio = r.listen(source)    # Listen for the first phrase and extract it into audio data.
 
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio)
+        query = r.recognize_google(audio)    # Access the Google web speech API and turn spoken language into text.
         print(f"User said: {query}\n")
 
     except Exception as e:
@@ -60,7 +60,7 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('aasutoshmahapatra@gmail.com', 'rabkai1012002')
+    server.login('aasutoshmahapatra@gmail.com', 'your_password')
     server.sendmail('aasutoshmahapatra@gmail.com', to, content)
     server.close()
 
